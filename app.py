@@ -145,7 +145,7 @@ if "messages" not in st.session_state:
 
 st.markdown("""
 # ☕ Hitesh Sir AI
-### Hanji kya haal chaal hai Sbhi mast..... Chalo coding kre!!!
+### Hanji kya haal chaal hai Sbhi mast..... Chalo coding krte💻!!!
 ---
 """)
 
