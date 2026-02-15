@@ -2,8 +2,8 @@ import streamlit as st
 from dotenv import load_dotenv
 from openai import OpenAI
 st.set_page_config(
-    page_title="Hitesh Sir AI ☕",
-    page_icon="☕",
+    page_title="Hitesh Sir AI ☕️",
+    page_icon="☕️",
     layout="centered"
 )
 st.markdown("""
@@ -102,5 +102,11 @@ if user_input:
     st.session_state.messages.append({"role": "assistant", "content": reply})
 
 for msg in st.session_state.messages[1:]:
-    with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
+
+    if msg["role"] == "assistant":
+        with st.chat_message("assistant", avatar="assets/hitesh.png"):
+            st.markdown(msg["content"])
+
+    elif msg["role"] == "user":
+        with st.chat_message("user", avatar="assets/student.png"):
+            st.markdown(msg["content"])
