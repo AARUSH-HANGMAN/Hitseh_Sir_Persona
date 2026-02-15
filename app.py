@@ -108,19 +108,13 @@ st.markdown("""
 user_input = st.chat_input("Ask something...")
 
 if user_input:
-    # it Save user message
     st.session_state.messages.append({"role": "user", "content": user_input})
 
-    # it Show user message instantly
-    with st.chat_message("user", avatar="Assets/student.png"):
-        st.markdown(user_input)
-
-    # Assistant typing animation showing up
     with st.chat_message("assistant", avatar="Assets/hitesh.png"):
         typing_placeholder = st.empty()
         typing_placeholder.markdown("💬 *Hitesh Sir is typing...*")
 
-        time.sleep(1)  # small delay for effect
+        time.sleep(1)
 
         response = client.chat.completions.create(
             model="gpt-4.1-mini",
@@ -131,7 +125,6 @@ if user_input:
 
         typing_placeholder.markdown(reply)
 
-    
     st.session_state.messages.append({"role": "assistant", "content": reply})
 
 for msg in st.session_state.messages[1:]:
