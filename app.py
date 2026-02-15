@@ -9,11 +9,12 @@ st.set_page_config(
 )
 st.markdown("""
 <style>
+
 /* Background */
 .stApp {
-    background-color: #FFE0B2;
+    background-color: #C65D00;  /* Dark Orange */
+    color: white;               /* Default text white */
 }
-
 
 /* Main container */
 .block-container {
@@ -22,24 +23,33 @@ st.markdown("""
 
 /* Title styling */
 h1 {
-    color: #F4A261;
+    color: white;               /* Title white */
+    text-align: center;
+}
+
+/* Subtitle */
+h3 {
+    color: #FFD580;             /* Soft cream highlight */
     text-align: center;
 }
 
 /* Chat bubble user */
 [data-testid="stChatMessage"][data-testid*="user"] {
-    background-color: #2A2A2A;
-    border-radius: 10px;
+    background-color: #8B3E00;  /* Slightly darker orange */
+    border-radius: 12px;
     padding: 10px;
+    color: white;
 }
 
 /* Chat bubble assistant */
 [data-testid="stChatMessage"][data-testid*="assistant"] {
-    background-color: #3A2F2F;
-    border-left: 4px solid #F4A261;
-    border-radius: 10px;
+    background-color: #5C2A00;  /* Deep brown */
+    border-left: 4px solid #FFD580;
+    border-radius: 12px;
     padding: 10px;
+    color: white;
 }
+
 </style>
 """, unsafe_allow_html=True)
 
