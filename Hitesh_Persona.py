@@ -1,3 +1,4 @@
+'''This is the raw persona of Hitesh Sir'''
 from dotenv import load_dotenv
 from openai import OpenAI
 
