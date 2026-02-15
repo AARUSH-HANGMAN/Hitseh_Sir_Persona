@@ -6,6 +6,42 @@ st.set_page_config(
     page_icon="☕",
     layout="centered"
 )
+st.markdown("""
+<style>
+/* Background */
+.stApp {
+    background-color: #FFE0B2;
+}
+
+
+/* Main container */
+.block-container {
+    padding-top: 2rem;
+}
+
+/* Title styling */
+h1 {
+    color: #F4A261;
+    text-align: center;
+}
+
+/* Chat bubble user */
+[data-testid="stChatMessage"][data-testid*="user"] {
+    background-color: #2A2A2A;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Chat bubble assistant */
+[data-testid="stChatMessage"][data-testid*="assistant"] {
+    background-color: #3A2F2F;
+    border-left: 4px solid #F4A261;
+    border-radius: 10px;
+    padding: 10px;
+}
+</style>
+""", unsafe_allow_html=True)
+
 
 load_dotenv()
 client = OpenAI()
@@ -44,7 +80,12 @@ if "messages" not in st.session_state:
         {"role": "system", "content": SYSTEM_PROMPT}
     ]
 
-st.title("☕ Chat with Hitesh Sir")
+st.markdown("""
+# ☕ Hitesh Sir AI
+### Coding simple hai. Bas consistency chahiye.
+---
+""")
+
 
 user_input = st.chat_input("Ask something...")
 
