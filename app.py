@@ -106,7 +106,7 @@ st.markdown("""
 
 
 
-# Display OLD messages first
+# 1️⃣ Show OLD messages
 for msg in st.session_state.messages[1:]:
     with st.chat_message(
         msg["role"],
@@ -115,17 +115,24 @@ for msg in st.session_state.messages[1:]:
         st.markdown(msg["content"])
 
 
-# Then take new input
+# 2️⃣ Take input
 user_input = st.chat_input("Ask something...")
 
 if user_input:
-    st.session_state.messages.append({"role": "user", "content": user_input})
 
+    # Show user message immediately
+    with st.chat_message("user", avatar="Assets/student.png"):
+        st.markdown(user_input)
+
+    st.session_state.messages.append(
+        {"role": "user", "content": user_input}
+    )
+
+    # Assistant typing block
     with st.chat_message("assistant", avatar="Assets/hitesh.png"):
+
         typing_placeholder = st.empty()
         typing_placeholder.markdown("💬 *Hitesh Sir is typing...*")
-
-        time.sleep(1)
 
         response = client.chat.completions.create(
             model="gpt-4.1-mini",
@@ -136,4 +143,8 @@ if user_input:
 
         typing_placeholder.markdown(reply)
 
-    st.session_state.messages.append({"role": "assistant", "content": reply})
+    st.session_state.messages.append(
+        {"role": "assistant", "content": reply}
+    )
+
+    st.rerun()
