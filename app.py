@@ -1,4 +1,5 @@
 import os
+import time
 import streamlit as st
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -107,15 +108,30 @@ st.markdown("""
 user_input = st.chat_input("Ask something...")
 
 if user_input:
+    # it Save user message
     st.session_state.messages.append({"role": "user", "content": user_input})
 
-    response = client.chat.completions.create(
-        model="gpt-4.1-mini",
-        messages=st.session_state.messages
-    )
+    # it Show user message instantly
+    with st.chat_message("user", avatar="Assets/student.png"):
+        st.markdown(user_input)
 
-    reply = response.choices[0].message.content
+    # Assistant typing animation showing up
+    with st.chat_message("assistant", avatar="Assets/hitesh.png"):
+        typing_placeholder = st.empty()
+        typing_placeholder.markdown("💬 *Hitesh Sir is typing...*")
 
+        time.sleep(1)  # small delay for effect
+
+        response = client.chat.completions.create(
+            model="gpt-4.1-mini",
+            messages=st.session_state.messages
+        )
+
+        reply = response.choices[0].message.content
+
+        typing_placeholder.markdown(reply)
+
+    
     st.session_state.messages.append({"role": "assistant", "content": reply})
 
 for msg in st.session_state.messages[1:]:
