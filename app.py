@@ -41,7 +41,7 @@ h3 {
     padding: 10px;
     color: white;
 }
-
+           
 /* Chat bubble assistant */
 [data-testid="stChatMessage"][data-testid*="assistant"] {
     background-color: #5C2A00;  /* Deep brown */
@@ -50,6 +50,48 @@ h3 {
     padding: 10px;
     color: white;
 }
+            /* ===== Bottom Chat Input Area ===== */
+
+section[data-testid="stChatInput"] {
+    background-color: #1A1A1A !important;
+    border-radius: 20px !important;
+    padding: 12px !important;
+    border: 2px solid #FF9F45 !important;
+    box-shadow: 0 0 20px rgba(255, 159, 69, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Glow on hover */
+section[data-testid="stChatInput"]:hover {
+    box-shadow: 0 0 30px rgba(255, 159, 69, 0.8);
+}
+
+/* Input text */
+textarea {
+    color: white !important;
+    font-size: 16px !important;
+}
+
+/* Placeholder */
+textarea::placeholder {
+    color: #FFD580 !important;
+    opacity: 0.8;
+}
+
+/* Send button */
+button[kind="primary"] {
+    background-color: #FF9F45 !important;
+    color: black !important;
+    border-radius: 12px !important;
+    transition: 0.3s ease-in-out;
+}
+
+/* Send button hover */
+button[kind="primary"]:hover {
+    background-color: #FFD580 !important;
+    transform: scale(1.05);
+}
+
 
 </style>
 """, unsafe_allow_html=True)
