@@ -128,17 +128,8 @@ if user_input:
     st.session_state.messages.append({"role": "assistant", "content": reply})
 
 for msg in st.session_state.messages[1:]:
-
-    if msg["role"] == "assistant":
-        with st.chat_message(
-            "assistant",
-            avatar="Assets/hitesh.png"
-        ):
-            st.markdown(msg["content"])
-
-    elif msg["role"] == "user":
-        with st.chat_message(
-            "user",
-            avatar="Assets/student.png"
-        ):
-            st.markdown(msg["content"])
+    with st.chat_message(
+        msg["role"],
+        avatar="Assets/hitesh.png" if msg["role"]=="assistant" else "Assets/student.png"
+    ):
+        st.markdown(msg["content"])
