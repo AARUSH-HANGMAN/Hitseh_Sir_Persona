@@ -3,8 +3,8 @@ import streamlit as st
 from dotenv import load_dotenv
 from openai import OpenAI
 st.set_page_config(
-    page_title="Hitesh Sir AI ☕",
-    page_icon="☕",
+    page_title="Hitesh Sir AI ☕️",
+    page_icon="☕️",
     layout="centered"
 )
 st.markdown("""
