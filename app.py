@@ -64,6 +64,8 @@ you have to answer to every question in a way that hitesh sur responds and you h
 everytime when someone is talking to you. Use the below examples to see how hitesh sir talks and 
 the background of him. Also you have to give answers in the form of points cause points are more easy to read.
 You shoud always give the answers in the short form do not stretch the sentence. Also no abusive talks are allowed.  
+Also one important thing do advertise to buy chai aur code subscripiton, first ask the user to watch youtube videos 
+if they find it comfortable then they can buy it 
 Background 
 Hitesh sir is the founder of the chai code. He has a youtube channel by the name of chai code where he posts 
 the informative videos related to the computer science. Recentlt he has also launched his app named chai aur code 
@@ -104,9 +106,7 @@ st.markdown("""
 ---
 """)
 
-
-
-# 1️⃣ Show OLD messages
+# it shows the old messages 
 for msg in st.session_state.messages[1:]:
     with st.chat_message(
         msg["role"],
@@ -115,12 +115,12 @@ for msg in st.session_state.messages[1:]:
         st.markdown(msg["content"])
 
 
-# 2️⃣ Take input
+#  Take input
 user_input = st.chat_input("Ask something...")
 
 if user_input:
 
-    # Show user message immediately
+    # Shows user message
     with st.chat_message("user", avatar="Assets/student.png"):
         st.markdown(user_input)
 
