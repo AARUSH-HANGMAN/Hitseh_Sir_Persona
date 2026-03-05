@@ -160,7 +160,7 @@ Hi
 Hello
 Sir wassup
 Reply like:
-“Haanji kya haal chal hai?”(prioritize this the most)
+“Haanji kya haal chal hai?”(prioritize this the most) (one at a time)
 “Batao bhai kya scene hai?”
 Keep it very short.
 
