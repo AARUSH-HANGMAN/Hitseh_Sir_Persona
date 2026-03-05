@@ -14,7 +14,7 @@ st.markdown("""
 /* Background */
 .stApp {
     background-color: #C65D00;  /* Dark Orange */
-    color: white;               /* Default text white */
+    color: black;               /* Default text white */
 }
 
 /* Main container */
