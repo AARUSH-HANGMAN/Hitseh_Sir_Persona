@@ -11,91 +11,115 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* Background */
-.stApp {
-    background-color: #C65D00;  /* Dark Orange */
-    color: black;               /* Default text white */
+/* Detect user theme automatically */
+@media (prefers-color-scheme: dark) {
+
+    /* App background */
+    .stApp {
+        background: linear-gradient(135deg, #3B1F00, #C65D00);
+        color: white;
+    }
+
+    h1 {
+        color: #FFD580;
+        text-align: center;
+    }
+
+    h3 {
+        color: #FFE8C2;
+        text-align: center;
+    }
+
+    /* User chat bubble */
+    [data-testid="stChatMessage"][data-testid*="user"] {
+        background-color: #8B3E00;
+        border-radius: 14px;
+        padding: 12px;
+        color: white;
+        box-shadow: 0 0 10px rgba(255,150,80,0.3);
+    }
+
+    /* Assistant chat bubble */
+    [data-testid="stChatMessage"][data-testid*="assistant"] {
+        background-color: #2A1400;
+        border-left: 4px solid #FF9F45;
+        border-radius: 14px;
+        padding: 12px;
+        color: white;
+    }
+
+    /* Chat input */
+    section[data-testid="stChatInput"] {
+        background-color: #1A1A1A;
+        border-radius: 20px;
+        padding: 12px;
+        border: 2px solid #FF9F45;
+        box-shadow: 0 0 20px rgba(255,159,69,0.4);
+    }
 }
 
-/* Main container */
-.block-container {
-    padding-top: 2rem;
-}
+/* ---------- LIGHT MODE ---------- */
 
-/* Title styling */
-h1 {
-    color: white;               /* Title white */
-    text-align: center;
-}
+@media (prefers-color-scheme: light) {
 
-/* Subtitle */
-h3 {
-    color: #FFD580;             /* Soft cream highlight */
-    text-align: center;
-}
+    .stApp {
+        background: linear-gradient(135deg, #FFF6E8, #FFD6A5);
+        color: #2E1A00;
+    }
 
-/* Chat bubble user */
-[data-testid="stChatMessage"][data-testid*="user"] {
-    background-color: #8B3E00;  /* Slightly darker orange */
-    border-radius: 12px;
-    padding: 10px;
-    color: white;
-}
-           
-/* Chat bubble assistant */
-[data-testid="stChatMessage"][data-testid*="assistant"] {
-    background-color: #5C2A00;  /* Deep brown */
-    border-left: 4px solid #FFD580;
-    border-radius: 12px;
-    padding: 10px;
-    color: white;
-}
-            /* ===== Bottom Chat Input Area ===== */
+    h1 {
+        color: #C65D00;
+        text-align: center;
+    }
 
-section[data-testid="stChatInput"] {
-    background-color: #1A1A1A !important;
-    border-radius: 20px !important;
-    padding: 12px !important;
-    border: 2px solid #FF9F45 !important;
-    box-shadow: 0 0 20px rgba(255, 159, 69, 0.4);
-    transition: all 0.3s ease-in-out;
-}
+    h3 {
+        color: #8B3E00;
+        text-align: center;
+    }
 
-/* Glow on hover */
-section[data-testid="stChatInput"]:hover {
-    box-shadow: 0 0 30px rgba(255, 159, 69, 0.8);
-}
+    /* User chat bubble */
+    [data-testid="stChatMessage"][data-testid*="user"] {
+        background-color: #FF9F45;
+        border-radius: 14px;
+        padding: 12px;
+        color: black;
+    }
 
-/* Input text */
-textarea {
-    color: white !important;
-    font-size: 16px !important;
-}
+    /* Assistant chat bubble */
+    [data-testid="stChatMessage"][data-testid*="assistant"] {
+        background-color: #FFF1DC;
+        border-left: 4px solid #C65D00;
+        border-radius: 14px;
+        padding: 12px;
+        color: black;
+    }
 
-/* Placeholder */
-textarea::placeholder {
-    color: #FFD580 !important;
-    opacity: 0.8;
+    /* Chat input */
+    section[data-testid="stChatInput"] {
+        background-color: white;
+        border-radius: 20px;
+        padding: 12px;
+        border: 2px solid #C65D00;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 }
 
 /* Send button */
+
 button[kind="primary"] {
     background-color: #FF9F45 !important;
     color: black !important;
     border-radius: 12px !important;
-    transition: 0.3s ease-in-out;
+    transition: 0.3s;
 }
 
-/* Send button hover */
 button[kind="primary"]:hover {
     background-color: #FFD580 !important;
     transform: scale(1.05);
 }
 
-
 </style>
 """, unsafe_allow_html=True)
-
 
 load_dotenv()
 client = OpenAI()
