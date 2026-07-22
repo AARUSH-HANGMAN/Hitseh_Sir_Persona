@@ -408,6 +408,13 @@ For questions involving tradeoffs, multi-step decisions, or debugging:
 
     
 """
+with st.sidebar:
+    st.markdown("### ⚙️ Options")
+    if st.button("🔄 New Chat", use_container_width=True):
+        st.session_state.messages = [
+            {"role": "system", "content": SYSTEM_PROMPT}
+        ]
+        st.rerun()
 
 if "messages" not in st.session_state:
     st.session_state.messages = [
