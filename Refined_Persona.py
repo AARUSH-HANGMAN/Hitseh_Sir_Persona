@@ -11,18 +11,18 @@ st.set_page_config(
 st.markdown("""
 <style>
 
-/* Detect user theme automatically */
 @media (prefers-color-scheme: dark) {
-
-    /* App background */
     .stApp {
-        background: linear-gradient(135deg, #3B1F00, #C65D00);
+        background: linear-gradient(-45deg, #3B1F00, #C65D00, #8B3E00, #1A1A1A);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
         color: white;
     }
 
     h1 {
         color: #FFD580;
         text-align: center;
+        text-shadow: 0 0 20px rgba(255, 213, 128, 0.5);
     }
 
     h3 {
@@ -30,8 +30,7 @@ st.markdown("""
         text-align: center;
     }
 
-    /* User chat bubble */
-    [data-testid="stChatMessage"][data-testid*="user"] {
+    [data-testid="stChatMessage"]:has([data-testid*="user"]) {
         background-color: #8B3E00;
         border-radius: 14px;
         padding: 12px;
@@ -39,8 +38,7 @@ st.markdown("""
         box-shadow: 0 0 10px rgba(255,150,80,0.3);
     }
 
-    /* Assistant chat bubble */
-    [data-testid="stChatMessage"][data-testid*="assistant"] {
+    [data-testid="stChatMessage"]:has([data-testid*="assistant"]) {
         background-color: #2A1400;
         border-left: 4px solid #FF9F45;
         border-radius: 14px;
@@ -48,7 +46,6 @@ st.markdown("""
         color: white;
     }
 
-    /* Chat input */
     section[data-testid="stChatInput"] {
         background-color: #1A1A1A;
         border-radius: 20px;
@@ -56,12 +53,28 @@ st.markdown("""
         border: 2px solid #FF9F45;
         box-shadow: 0 0 20px rgba(255,159,69,0.4);
     }
+
+    section[data-testid="stSidebar"] {
+        background-color: #2A1400;
+        border-right: 2px solid #FF9F45;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #FF9F45;
+        border-radius: 10px;
+    }
 }
 
-/* ---------- LIGHT MODE ---------- */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
 @media (prefers-color-scheme: light) {
-
     .stApp {
         background: linear-gradient(135deg, #FFF6E8, #FFD6A5);
         color: #2E1A00;
@@ -70,6 +83,7 @@ st.markdown("""
     h1 {
         color: #C65D00;
         text-align: center;
+        text-shadow: 0 0 15px rgba(198, 93, 0, 0.2);
     }
 
     h3 {
@@ -77,16 +91,14 @@ st.markdown("""
         text-align: center;
     }
 
-    /* User chat bubble */
-    [data-testid="stChatMessage"][data-testid*="user"] {
+    [data-testid="stChatMessage"]:has([data-testid*="user"]) {
         background-color: #FF9F45;
         border-radius: 14px;
         padding: 12px;
         color: black;
     }
 
-    /* Assistant chat bubble */
-    [data-testid="stChatMessage"][data-testid*="assistant"] {
+    [data-testid="stChatMessage"]:has([data-testid*="assistant"]) {
         background-color: #FFF1DC;
         border-left: 4px solid #C65D00;
         border-radius: 14px;
@@ -94,7 +106,6 @@ st.markdown("""
         color: black;
     }
 
-    /* Chat input */
     section[data-testid="stChatInput"] {
         background-color: white;
         border-radius: 20px;
@@ -102,9 +113,12 @@ st.markdown("""
         border: 2px solid #C65D00;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-}
 
-/* Send button */
+    section[data-testid="stSidebar"] {
+        background-color: #FFF1DC;
+        border-right: 2px solid #C65D00;
+    }
+}
 
 button[kind="primary"] {
     background-color: #FF9F45 !important;
