@@ -8,6 +8,9 @@ st.set_page_config(
     page_icon="☕️",
     layout="centered"
 )
+import streamlit as st
+import streamlit.components.v1 as components
+
 st.markdown("""
 <style>
 
@@ -134,6 +137,9 @@ button[kind="primary"]:hover {
 
 </style>
 """, unsafe_allow_html=True)
+
+
+# ---------- NEW: INTERACTIVE CURSOR ----------
 components.html("""
 <style>
 html, body {
@@ -213,7 +219,6 @@ window.parent.document.addEventListener('mouseout', (e) => {
 });
 </script>
 """, height=0, width=0)
-
 load_dotenv()
 client = OpenAI()
 
