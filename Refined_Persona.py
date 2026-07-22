@@ -167,8 +167,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
  
- 
-# ---------- INTERACTIVE CURSOR ----------
 components.html("""
 <style>
 html, body {
@@ -417,8 +415,8 @@ if "messages" not in st.session_state:
     ]
 
 st.markdown("""
-# ☕ Hitesh Sir AI
-### Hanji kya haal chaal hai Sbhi mast..... Chalo coding krte💻!!!
+# CodeChai  
+### Persona-Guarded LLM Mentor
 ---
 """)
 
