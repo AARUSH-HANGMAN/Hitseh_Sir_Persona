@@ -8,12 +8,13 @@ st.set_page_config(
     page_icon="☕️",
     layout="centered"
 )
+
 import streamlit as st
 import streamlit.components.v1 as components
-
+ 
 st.markdown("""
 <style>
-
+ 
 @media (prefers-color-scheme: dark) {
     .stApp {
         background: linear-gradient(-45deg, #3B1F00, #C65D00, #8B3E00, #1A1A1A);
@@ -21,18 +22,18 @@ st.markdown("""
         animation: gradientShift 15s ease infinite;
         color: white;
     }
-
+ 
     h1 {
         color: #FFD580;
         text-align: center;
         text-shadow: 0 0 20px rgba(255, 213, 128, 0.5);
     }
-
+ 
     h3 {
         color: #FFE8C2;
         text-align: center;
     }
-
+ 
     [data-testid="stChatMessage"]:has([data-testid*="user"]) {
         background-color: #8B3E00;
         border-radius: 14px;
@@ -40,7 +41,7 @@ st.markdown("""
         color: white;
         box-shadow: 0 0 10px rgba(255,150,80,0.3);
     }
-
+ 
     [data-testid="stChatMessage"]:has([data-testid*="assistant"]) {
         background-color: #2A1400;
         border-left: 4px solid #FF9F45;
@@ -48,7 +49,7 @@ st.markdown("""
         padding: 12px;
         color: white;
     }
-
+ 
     section[data-testid="stChatInput"] {
         background-color: #1A1A1A;
         border-radius: 20px;
@@ -56,12 +57,12 @@ st.markdown("""
         border: 2px solid #FF9F45;
         box-shadow: 0 0 20px rgba(255,159,69,0.4);
     }
-
+ 
     section[data-testid="stSidebar"] {
         background-color: #2A1400;
         border-right: 2px solid #FF9F45;
     }
-
+ 
     ::-webkit-scrollbar {
         width: 10px;
     }
@@ -70,89 +71,104 @@ st.markdown("""
         border-radius: 10px;
     }
 }
-
+ 
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-
+ 
 @media (prefers-color-scheme: light) {
     .stApp {
-        background: #FDFAF6;
+        background: #F4EBDD;
         color: #2E1A00;
     }
-
+ 
     h1 {
         color: #2E1A00;
         text-align: center;
         font-weight: 800;
         letter-spacing: -0.5px;
     }
-
+ 
     h3 {
         color: #7A5C3E;
         text-align: center;
         font-weight: 400;
     }
-
-    /* User chat bubble */
+ 
+    /* User chat bubble - deep amber, high contrast against cream */
     [data-testid="stChatMessage"]:has([data-testid*="user"]) {
-        background-color: #D97706;
+        background-color: #B8560A;
         border-radius: 20px;
         padding: 14px 18px;
-        color: white;
-        box-shadow: 0 4px 14px rgba(217, 119, 6, 0.2);
+        color: #FFF6E8;
+        box-shadow: 0 4px 14px rgba(184, 86, 10, 0.25);
     }
-
-    /* Assistant chat bubble */
+ 
+    /* Assistant chat bubble - warm tan, distinct from background, no white */
     [data-testid="stChatMessage"]:has([data-testid*="assistant"]) {
-        background-color: #FFFFFF;
-        border: 1px solid #F0E4D4;
+        background-color: #FBE8CC;
+        border: 1px solid #E8CBA0;
         border-radius: 20px;
         padding: 14px 18px;
         color: #2E1A00;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     }
-
-    /* Chat input */
+ 
+    /* Chat input - deep contrast, not white */
     section[data-testid="stChatInput"] {
-        background-color: white;
+        background-color: #FBE8CC;
         border-radius: 999px;
         padding: 10px 16px;
-        border: 1px solid #F0E4D4;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        border: 1px solid #D9A96B;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     }
-
+ 
     section[data-testid="stSidebar"] {
-        background-color: #FFFFFF;
-        border-right: 1px solid #F0E4D4;
+        background-color: #EFDFC7;
+        border-right: 1px solid #D9A96B;
     }
-
-    /* Pill-style primary button, amber accent */
+ 
+    /* Pill-style primary button, deep amber accent */
     button[kind="primary"] {
-        background-color: #D97706 !important;
-        color: white !important;
+        background-color: #B8560A !important;
+        color: #FFF6E8 !important;
         border-radius: 999px !important;
         padding: 10px 24px !important;
         border: none !important;
         font-weight: 600 !important;
-        box-shadow: 0 4px 14px rgba(217, 119, 6, 0.25);
+        box-shadow: 0 4px 14px rgba(184, 86, 10, 0.3);
         transition: 0.25s;
     }
-
+ 
     button[kind="primary"]:hover {
-        background-color: #B8630A !important;
+        background-color: #94420A !important;
         transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35);
+        box-shadow: 0 6px 18px rgba(184, 86, 10, 0.4);
+    }
+ 
+    /* Secondary buttons (used for share/export) */
+    button[kind="secondary"] {
+        background-color: #FBE8CC !important;
+        color: #2E1A00 !important;
+        border: 1px solid #D9A96B !important;
+        border-radius: 999px !important;
+        font-weight: 600 !important;
+        transition: 0.25s;
+    }
+ 
+    button[kind="secondary"]:hover {
+        background-color: #F0D6A8 !important;
+        transform: translateY(-2px);
     }
 }
-
+ 
 </style>
 """, unsafe_allow_html=True)
-
-
-# ---------- NEW: INTERACTIVE CURSOR ----------
+ 
+ 
+# ---------- INTERACTIVE CURSOR ----------
 components.html("""
 <style>
 html, body {
@@ -161,7 +177,7 @@ html, body {
     height: 100%;
     background: transparent;
 }
-
+ 
 #custom-cursor {
     position: fixed;
     width: 20px;
@@ -174,22 +190,22 @@ html, body {
     transform: translate(-50%, -50%);
     transition: width 0.2s, height 0.2s, background 0.2s;
 }
-
+ 
 #custom-cursor.hover {
     width: 40px;
     height: 40px;
     background: radial-gradient(circle, #FFD580, transparent);
     box-shadow: 0 0 25px 8px rgba(255, 213, 128, 0.6);
 }
-
+ 
 @media (hover: none) {
     #custom-cursor { display: none; }
     html, body { cursor: auto !important; }
 }
 </style>
-
+ 
 <div id="custom-cursor"></div>
-
+ 
 <script>
 const cursor = window.parent.document.createElement('div');
 cursor.id = 'custom-cursor-parent';
@@ -207,12 +223,12 @@ cursor.style.cssText = `
 `;
 window.parent.document.body.appendChild(cursor);
 window.parent.document.body.style.cursor = 'none';
-
+ 
 window.parent.document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
 });
-
+ 
 window.parent.document.addEventListener('mouseover', (e) => {
     if (e.target.closest('button, input, textarea, a, [data-testid="stChatInput"]')) {
         cursor.style.width = '40px';
@@ -221,7 +237,7 @@ window.parent.document.addEventListener('mouseover', (e) => {
         cursor.style.boxShadow = '0 0 25px 8px rgba(255, 213, 128, 0.6)';
     }
 });
-
+ 
 window.parent.document.addEventListener('mouseout', (e) => {
     if (e.target.closest('button, input, textarea, a, [data-testid="stChatInput"]')) {
         cursor.style.width = '20px';
@@ -232,6 +248,7 @@ window.parent.document.addEventListener('mouseout', (e) => {
 });
 </script>
 """, height=0, width=0)
+ 
 load_dotenv()
 client = OpenAI()
 
