@@ -79,60 +79,73 @@ st.markdown("""
 
 @media (prefers-color-scheme: light) {
     .stApp {
-        background: linear-gradient(135deg, #FFF6E8, #FFD6A5);
+        background: #FDFAF6;
         color: #2E1A00;
     }
 
     h1 {
-        color: #C65D00;
+        color: #2E1A00;
         text-align: center;
-        text-shadow: 0 0 15px rgba(198, 93, 0, 0.2);
+        font-weight: 800;
+        letter-spacing: -0.5px;
     }
 
     h3 {
-        color: #8B3E00;
+        color: #7A5C3E;
         text-align: center;
+        font-weight: 400;
     }
 
+    /* User chat bubble */
     [data-testid="stChatMessage"]:has([data-testid*="user"]) {
-        background-color: #FF9F45;
-        border-radius: 14px;
-        padding: 12px;
-        color: black;
+        background-color: #D97706;
+        border-radius: 20px;
+        padding: 14px 18px;
+        color: white;
+        box-shadow: 0 4px 14px rgba(217, 119, 6, 0.2);
     }
 
+    /* Assistant chat bubble */
     [data-testid="stChatMessage"]:has([data-testid*="assistant"]) {
-        background-color: #FFF1DC;
-        border-left: 4px solid #C65D00;
-        border-radius: 14px;
-        padding: 12px;
-        color: black;
+        background-color: #FFFFFF;
+        border: 1px solid #F0E4D4;
+        border-radius: 20px;
+        padding: 14px 18px;
+        color: #2E1A00;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
     }
 
+    /* Chat input */
     section[data-testid="stChatInput"] {
         background-color: white;
-        border-radius: 20px;
-        padding: 12px;
-        border: 2px solid #C65D00;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 999px;
+        padding: 10px 16px;
+        border: 1px solid #F0E4D4;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     }
 
     section[data-testid="stSidebar"] {
-        background-color: #FFF1DC;
-        border-right: 2px solid #C65D00;
+        background-color: #FFFFFF;
+        border-right: 1px solid #F0E4D4;
     }
-}
 
-button[kind="primary"] {
-    background-color: #FF9F45 !important;
-    color: black !important;
-    border-radius: 12px !important;
-    transition: 0.3s;
-}
+    /* Pill-style primary button, amber accent */
+    button[kind="primary"] {
+        background-color: #D97706 !important;
+        color: white !important;
+        border-radius: 999px !important;
+        padding: 10px 24px !important;
+        border: none !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 14px rgba(217, 119, 6, 0.25);
+        transition: 0.25s;
+    }
 
-button[kind="primary"]:hover {
-    background-color: #FFD580 !important;
-    transform: scale(1.05);
+    button[kind="primary"]:hover {
+        background-color: #B8630A !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35);
+    }
 }
 
 </style>
