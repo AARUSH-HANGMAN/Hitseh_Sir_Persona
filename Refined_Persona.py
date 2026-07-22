@@ -134,6 +134,85 @@ button[kind="primary"]:hover {
 
 </style>
 """, unsafe_allow_html=True)
+components.html("""
+<style>
+html, body {
+    cursor: none !important;
+    margin: 0;
+    height: 100%;
+    background: transparent;
+}
+
+#custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FF9F45, transparent);
+    box-shadow: 0 0 15px 5px rgba(255, 159, 69, 0.5);
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+}
+
+#custom-cursor.hover {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #FFD580, transparent);
+    box-shadow: 0 0 25px 8px rgba(255, 213, 128, 0.6);
+}
+
+@media (hover: none) {
+    #custom-cursor { display: none; }
+    html, body { cursor: auto !important; }
+}
+</style>
+
+<div id="custom-cursor"></div>
+
+<script>
+const cursor = window.parent.document.createElement('div');
+cursor.id = 'custom-cursor-parent';
+cursor.style.cssText = `
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FF9F45, transparent);
+    box-shadow: 0 0 15px 5px rgba(255, 159, 69, 0.5);
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+`;
+window.parent.document.body.appendChild(cursor);
+window.parent.document.body.style.cursor = 'none';
+
+window.parent.document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
+window.parent.document.addEventListener('mouseover', (e) => {
+    if (e.target.closest('button, input, textarea, a, [data-testid="stChatInput"]')) {
+        cursor.style.width = '40px';
+        cursor.style.height = '40px';
+        cursor.style.background = 'radial-gradient(circle, #FFD580, transparent)';
+        cursor.style.boxShadow = '0 0 25px 8px rgba(255, 213, 128, 0.6)';
+    }
+});
+
+window.parent.document.addEventListener('mouseout', (e) => {
+    if (e.target.closest('button, input, textarea, a, [data-testid="stChatInput"]')) {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        cursor.style.background = 'radial-gradient(circle, #FF9F45, transparent)';
+        cursor.style.boxShadow = '0 0 15px 5px rgba(255, 159, 69, 0.5)';
+    }
+});
+</script>
+""", height=0, width=0)
 
 load_dotenv()
 client = OpenAI()
